@@ -76,5 +76,6 @@ if __name__ == "__main__":
         except Exception as e:
           print("Error: {}".format(e))  
       time.sleep(0.2)
+      
   except KafkaException as e:
     print(e)  
