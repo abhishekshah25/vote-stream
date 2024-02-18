@@ -7,14 +7,18 @@ from main import delivery_report
 from confluent_kafka import Consumer, KafkaException, KafkaError, SerializingProducer
 
 conf = {
-  'bootstrap.servers': 'localhost:9092'
+  'bootstrap.servers': 'localhost:9092',
 }
 
-consumer = Consumer(conf | {
-  'group.id': 'voting-group',
-  'auto.offset.reset': 'earliest',
-  'enable.auto.commit': False
-})
+additional_conf = {
+    'group.id': 'voting-group',
+    'auto.offset.reset': 'earliest',
+    'enable.auto.commit': False
+}
+
+consumer_conf = {**conf, **additional_conf}
+
+consumer = Consumer(consumer_conf)
 
 producer = SerializingProducer(conf)
 
@@ -50,7 +54,8 @@ if __name__ == "__main__":
       else:
         voter = json.loads(msg.value().decode('utf-8'))
         chosen_candidate = random.choice(candidates)
-        vote = voter | chosen_candidate | {
+        vote ={ **voter, 
+                **chosen_candidate, 
           'voting_time': datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
           'vote': 1
         }
