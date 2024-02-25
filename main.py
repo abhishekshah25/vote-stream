@@ -128,8 +128,8 @@ def delivery_report(err, msg):
     else:
         print(f'Message delivered to {msg.topic()} [{msg.partition()}]')
 
-voters_topic = 'voters_topic'
-candidates_topic = 'candidates_topic'
+voters_topic = 'votersTopic'
+candidates_topic = 'candidatesTopic'
 
 if __name__ == "__main__":
 
@@ -154,7 +154,7 @@ if __name__ == "__main__":
           """, (candidate["candidate_id"], candidate["candidate_name"], candidate["party_affiliation"], candidate["biography"], candidate["campaign_platform"], candidate["photo_url"]))
         conn.commit()
 
-    for i in range(1500):
+    for i in range(500):
       voter_data = generate_voter_data()
       insert_voters(conn,cur,voter_data)
 
