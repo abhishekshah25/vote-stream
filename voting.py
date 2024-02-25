@@ -38,7 +38,7 @@ if __name__ == "__main__":
   else:
     print(candidates)
 
-  consumer.subscribe(['voters_topic'])
+  consumer.subscribe(['votersTopic'])
 
   try:
     while True:
@@ -70,7 +70,7 @@ if __name__ == "__main__":
           conn.commit()
 
           producer.produce(
-            'voters_topic',
+            'votersTopic',
             key = vote["voter_id"],
             value = json.dumps(vote),
             on_delivery=delivery_report
@@ -80,7 +80,7 @@ if __name__ == "__main__":
 
         except Exception as e:
           print("Error: {}".format(e))  
-      time.sleep(0.2)
+      time.sleep(0.5)
       
   except KafkaException as e:
     print(e)  
