@@ -1,5 +1,5 @@
 from pyspark.sql import SparkSession
-from pyspark.StorageLevel import StorageLevel
+from pyspark.storagelevel import StorageLevel
 from pyspark.sql.functions import count,expr
 from pyspark.sql.functions import sum as _sum
 from pyspark.sql.functions import from_json, col
@@ -49,7 +49,7 @@ if __name__ == "__main__":
   votes_df = (spark.readStream
             .format("kafka")
             .option("kafka.bootstrap.servers", "localhost:9092")
-            .option("subscribe", "votes_topic")
+            .option("subscribe", "votesTopic")
             .option("startingOffsets", "earliest") 
             .load() 
             .selectExpr("CAST(value AS STRING)") 
