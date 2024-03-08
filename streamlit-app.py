@@ -21,7 +21,7 @@ def fetch_voting_stats():
 
 def update_data():
     last_refresh = st.empty()
-    last_refresh.text(f"Last refresh at: {time.strftime('%Y-%m-%d %H:%M:%S')}")
+    last_refresh.text(f" Last refresh at: {time.strftime('%Y-%m-%d %H:%M:%S')} ")
 
     # Fetch voting stats from postgres
     voters_count, candidates_count = fetch_voting_stats()
