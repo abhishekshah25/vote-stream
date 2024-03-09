@@ -3,3 +3,4 @@ confluent_kafka
 simplejson
 pyspark
 requests
+streamlit
