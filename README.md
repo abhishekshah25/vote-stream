@@ -1,4 +1,6 @@
-## System Components
+## Realtime Voting System
+
+### System Components
 
 1. main.py: This is the main Python script that creates the required tables on postgres (candidates, voters & votes), it also creates the Kafka topic and creates a copy of the votes table in the Kafka topic. It also contains the logic to consume the votes from the Kafka topic and produce data to voters_topic on Kafka.
 
